@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Repo Manager — SbyuXd</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="sb-brand" href="index.html">
+    <div class="sb-brand-ico">👤</div>
+    <div class="sb-brand-name">SbyuXd</div>
+  </a>
+
+  <div class="sb-sec">
+    <div class="sb-sec-label">Menu</div>
+    <a class="sb-link" href="index.html"><i class="fas fa-user"></i> Portfolio</a>
+    <a class="sb-link" href="deploy.html"><i class="fas fa-rocket"></i> Deploy HTML</a>
+    <a class="sb-link active" href="repo.html"><i class="fab fa-github"></i> Repo Manager</a>
+  </div>
+
+  <div class="sb-sec">
+    <div class="sb-sec-label">GitHub</div>
+    <div class="sb-link" style="cursor:default">
+      <i class="fab fa-github" style="color:var(--text2)"></i>
+      Token
+      <span class="sb-dot" id="sdot-gh-repo" style="margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--text3)"></span>
+    </div>
+  </div>
+
+  <div class="sb-user">
+    <div class="sb-ava">B</div>
+    <div class="sb-uinfo">
+      <div class="sb-uname">SbyuXd</div>
+      <div class="sb-urole">Bayu · Indonesia</div>
+    </div>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-title">GitHub Repo Manager</div>
+      <div class="tb-sub">Kelola repository GitHub — list, create, rename, delete, ubah visibility</div>
+    </div>
+    <a class="tb-ico" href="index.html" title="Portfolio"><i class="fas fa-user"></i></a>
+    <a class="tb-ico" href="deploy.html" title="Deploy"><i class="fas fa-rocket"></i></a>
+  </div>
+
+  <div class="m-tabs">
+    <a class="m-tab" href="index.html"><i class="fas fa-user"></i> Portfolio</a>
+    <a class="m-tab" href="deploy.html"><i class="fas fa-rocket"></i> Deploy</a>
+    <a class="m-tab active" href="repo.html"><i class="fab fa-github"></i> Repo</a>
+  </div>
+
+  <div class="content">
+
+    <!-- TOKEN -->
+    <div class="notice info">
+      <i class="fas fa-shield-halved"></i>
+      <span>Token GitHub disimpan terenkripsi di localStorage browser. Tidak pernah dikirim ke server manapun.</span>
+    </div>
+
+    <div class="tok-card" style="margin-bottom:20px">
+      <div class="tok-top">
+        <div class="tok-left">
+          <div class="tok-ico" style="background:rgba(255,255,255,0.06)"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="tok-name">GitHub Personal Access Token</div>
+            <div class="tok-sub">Scope yang dibutuhkan: repo, delete_repo</div>
+          </div>
+        </div>
+        <span id="gh-tok-badge" class="badge off">Belum diset</span>
+      </div>
+      <div class="tok-row">
+        <input type="password" class="tok-input" id="gh-tok-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxx">
+        <button class="btn btn-success btn-sm" onclick="saveGHToken()">Simpan</button>
+        <button class="btn btn-danger btn-sm"  onclick="clearGHToken()">Hapus</button>
+      </div>
+      <div class="fhint">
+        <i class="fas fa-arrow-up-right-from-square" style="font-size:0.6rem"></i>
+        Buat di <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens</a> — centang <code style="color:var(--blue);font-size:0.75rem">repo</code> dan <code style="color:var(--blue);font-size:0.75rem">delete_repo</code>
+      </div>
+    </div>
+
+    <!-- CREATE REPO -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-head">
+        <div class="card-title"><i class="fas fa-plus"></i> Buat Repository Baru</div>
+      </div>
+      <div class="card-body">
+        <div class="fg2">
+          <div>
+            <label class="flabel">Nama repo <span class="req">*</span></label>
+            <input type="text" class="finput" id="cr-name" placeholder="nama-repo">
+          </div>
+          <div>
+            <label class="flabel">Deskripsi (opsional)</label>
+            <input type="text" class="finput" id="cr-desc" placeholder="Deskripsi singkat">
+          </div>
+        </div>
+        <div class="fg" style="display:flex;align-items:center;gap:9px">
+          <input type="checkbox" id="cr-private" style="width:14px;height:14px;accent-color:var(--blue)">
+          <label for="cr-private" class="flabel" style="margin-bottom:0;cursor:pointer">Private repository</label>
+        </div>
+        <button class="btn btn-blue btn-full" onclick="createRepo()">
+          <i class="fab fa-github"></i> Buat Repository
+        </button>
+      </div>
+    </div>
+
+    <!-- RENAME REPO -->
+    <div class="card" style="margin-bottom:14px">
+      <div class="card-head">
+        <div class="card-title"><i class="fas fa-pen"></i> Rename Repository</div>
+      </div>
+      <div class="card-body">
+        <div class="fg2">
+          <div>
+            <label class="flabel">Nama lama <span class="req">*</span></label>
+            <input type="text" class="finput" id="rn-old" placeholder="nama-repo-lama">
+          </div>
+          <div>
+            <label class="flabel">Nama baru <span class="req">*</span></label>
+            <input type="text" class="finput" id="rn-new" placeholder="nama-repo-baru">
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-full" onclick="renameRepo()">
+          <i class="fas fa-arrows-rotate"></i> Rename
+        </button>
+      </div>
+    </div>
+
+    <!-- REPO LIST -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title"><i class="fab fa-github"></i> Daftar Repository</div>
+        <button class="btn btn-ghost btn-sm" onclick="listRepos()"><i class="fas fa-rotate-right"></i> Refresh</button>
+      </div>
+      <div id="repo-list-wrap">
+        <div class="empty"><i class="fab fa-github"></i>Set token GitHub lalu klik Refresh.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/repo.js"></script>
+</body>
+</html>
