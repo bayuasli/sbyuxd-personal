@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Deploy HTML — SbyuXd</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="sb-brand" href="index.html">
+    <div class="sb-brand-ico">👤</div>
+    <div class="sb-brand-name">SbyuXd</div>
+  </a>
+
+  <div class="sb-sec">
+    <div class="sb-sec-label">Menu</div>
+    <a class="sb-link" href="index.html"><i class="fas fa-user"></i> Portfolio</a>
+    <a class="sb-link active" href="deploy.html"><i class="fas fa-rocket"></i> Deploy HTML</a>
+    <a class="sb-link" href="repo.html"><i class="fab fa-github"></i> Repo Manager</a>
+  </div>
+
+  <div class="sb-sec">
+    <div class="sb-sec-label">Platform</div>
+    <div class="sb-link" style="cursor:default">
+      <span style="width:15px;text-align:center;font-size:0.72rem;font-weight:700;color:var(--text3)">▲</span>
+      Vercel
+      <span class="sb-dot" id="sdot-vcl" style="margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--text3)"></span>
+    </div>
+  </div>
+
+  <div class="sb-user">
+    <div class="sb-ava">B</div>
+    <div class="sb-uinfo">
+      <div class="sb-uname">SbyuXd</div>
+      <div class="sb-urole">Bayu · Indonesia</div>
+    </div>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-title">Deploy HTML</div>
+      <div class="tb-sub">Upload file HTML atau ZIP dan deploy ke Vercel</div>
+    </div>
+    <a class="tb-ico" href="index.html" title="Portfolio"><i class="fas fa-user"></i></a>
+    <a class="tb-ico" href="repo.html" title="Repo Manager"><i class="fab fa-github"></i></a>
+  </div>
+
+  <div class="m-tabs">
+    <a class="m-tab" href="index.html"><i class="fas fa-user"></i> Portfolio</a>
+    <a class="m-tab active" href="deploy.html"><i class="fas fa-rocket"></i> Deploy</a>
+    <a class="m-tab" href="repo.html"><i class="fab fa-github"></i> Repo</a>
+  </div>
+
+  <div class="content">
+
+    <!-- STATUS -->
+    <div class="stat-row cols3" style="grid-template-columns:1fr">
+      <div class="stat-card" id="sc-vcl" onclick="document.getElementById('tok-section').scrollIntoView({behavior:'smooth'})">
+        <div class="sc-ico" style="background:rgba(255,255,255,0.06);font-weight:700;font-size:0.8rem">▲</div>
+        <div class="sc-info">
+          <div class="sc-name">Vercel</div>
+          <div class="sc-status">
+            <span class="sc-dot r" id="scdot-vcl"></span>
+            <span class="sc-val" id="scval-vcl">Not connected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPLOY FORM -->
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title"><span style="font-weight:700;font-size:0.85rem">▲</span> Deploy ke Vercel</div>
+          <div class="card-sub">Upload ZIP (multi-file) atau HTML tunggal</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="fg">
+          <label class="flabel">File <span class="req">*</span></label>
+          <div class="dropzone" id="dz-vcl">
+            <input type="file" id="file-vcl" accept=".zip,.html">
+            <div class="dz-icon"><i class="fas fa-cloud-arrow-up"></i></div>
+            <div class="dz-title">Klik atau drag file ke sini</div>
+            <div class="dz-sub">ZIP (multi-file) atau HTML tunggal — harus ada index.html</div>
+          </div>
+          <div class="dz-info" id="fi-vcl">
+            <i class="fas fa-file-code" style="color:var(--green);flex-shrink:0"></i>
+            <span class="dz-fname" id="fn-vcl">—</span>
+            <span class="dz-fsize" id="fs-vcl">—</span>
+            <button class="dz-clear" onclick="clearFile('vcl')"><i class="fas fa-xmark"></i></button>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <label class="flabel">Nama project <span class="req">*</span></label>
+            <input type="text" class="finput" id="vcl-proj" placeholder="nama-project">
+            <div class="fhint">Akan jadi nama-project.vercel.app</div>
+          </div>
+          <div>
+            <label class="flabel">Team ID <span style="color:var(--text3);font-weight:400">(opsional)</span></label>
+            <input type="text" class="finput" id="vcl-team" placeholder="team_xxx (kosongkan jika personal)">
+          </div>
+        </div>
+        <button class="btn btn-blue btn-full" onclick="deployVCL()">
+          ▲ Deploy ke Vercel
+        </button>
+        <div class="logbox" id="log-vcl"></div>
+      </div>
+    </div>
+
+    <!-- WEBSITE LIST -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title"><i class="fas fa-globe"></i> My Websites</div>
+        <button class="btn btn-ghost btn-sm" onclick="loadWebs()"><i class="fas fa-rotate-right"></i> Refresh</button>
+      </div>
+      <div id="webs-wrap">
+        <div class="empty"><i class="fas fa-globe"></i>Klik Refresh untuk memuat daftar website.</div>
+      </div>
+    </div>
+
+    <!-- RIWAYAT -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title"><i class="fas fa-clock-rotate-left"></i> Riwayat Deploy</div>
+        <button class="btn btn-danger btn-sm" onclick="clearHistory()"><i class="fas fa-trash"></i></button>
+      </div>
+      <div id="hist-wrap">
+        <div class="empty"><i class="fas fa-clock-rotate-left"></i>Belum ada riwayat.</div>
+      </div>
+    </div>
+
+    <!-- TOKEN -->
+    <div id="tok-section">
+      <div class="notice info">
+        <i class="fas fa-shield-halved"></i>
+        <span>Token disimpan terenkripsi di localStorage. Tidak pernah dikirim ke server manapun selain API Vercel.</span>
+      </div>
+
+      <div class="tok-card">
+        <div class="tok-top">
+          <div class="tok-left">
+            <div class="tok-ico" style="background:rgba(255,255,255,0.06);font-weight:700;font-size:0.75rem">▲</div>
+            <div>
+              <div class="tok-name">Vercel Access Token</div>
+              <div class="tok-sub">Untuk upload file, create project, dan deploy ke Vercel</div>
+            </div>
+          </div>
+          <span id="tbadge-vcl" class="badge off">Belum diset</span>
+        </div>
+        <div class="tok-row">
+          <input type="password" class="tok-input" id="ti-vcl" placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+          <button class="btn btn-success btn-sm" onclick="saveToken('vcl')">Simpan</button>
+          <button class="btn btn-danger btn-sm"  onclick="clearToken('vcl')">Hapus</button>
+        </div>
+        <div class="fhint"><i class="fas fa-arrow-up-right-from-square" style="font-size:0.6rem"></i> Buat di <a href="https://vercel.com/account/tokens" target="_blank">vercel.com/account/tokens</a></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/deploy.js"></script>
+</body>
+</html>
