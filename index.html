@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SbyuXd — Portfolio</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/portfolio.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <a class="sb-brand" href="index.html">
+    <div class="sb-brand-ico">👤</div>
+    <div class="sb-brand-name">SbyuXd</div>
+  </a>
+
+  <div class="sb-sec">
+    <div class="sb-sec-label">Menu</div>
+    <a class="sb-link active" href="index.html"><i class="fas fa-user"></i> Portfolio</a>
+    <a class="sb-link" href="deploy.html"><i class="fas fa-rocket"></i> Deploy HTML</a>
+    <a class="sb-link" href="repo.html"><i class="fab fa-github"></i> Repo Manager</a>
+  </div>
+
+  <div class="sb-user">
+    <div class="sb-ava">B</div>
+    <div class="sb-uinfo">
+      <div class="sb-uname">SbyuXd</div>
+      <div class="sb-urole">Bayu · Indonesia</div>
+    </div>
+  </div>
+</aside>
+
+<div class="main-wrap">
+  <div class="topbar">
+    <div class="tb-left">
+      <div class="tb-title">Portfolio</div>
+      <div class="tb-sub">Pelajar · Developer · Indonesia</div>
+    </div>
+    <a class="tb-ico" href="deploy.html" title="Deploy HTML"><i class="fas fa-rocket"></i></a>
+    <a class="tb-ico" href="repo.html" title="Repo Manager"><i class="fab fa-github"></i></a>
+  </div>
+
+  <div class="m-tabs">
+    <a class="m-tab active" href="index.html"><i class="fas fa-user"></i> Portfolio</a>
+    <a class="m-tab" href="deploy.html"><i class="fas fa-rocket"></i> Deploy</a>
+    <a class="m-tab" href="repo.html"><i class="fab fa-github"></i> Repo</a>
+  </div>
+
+  <div class="content" style="padding:0">
+    <div class="port-wrap">
+
+      <!-- HERO -->
+      <header style="text-align:center;margin-bottom:32px" class="reveal">
+        <div class="av-ring">
+          <img class="av-img" src="https://raw.githubusercontent.com/bayuasli/dat1/main/uploads/3d6f01-1770461378871.jpg" alt="SbyuXd" onerror="this.style.visibility='hidden'">
+          <span class="av-online"></span>
+        </div>
+        <div class="name-row">
+          <h1>𝗦𝗯𝘆𝘂𝗫𝗱</h1>
+          <span class="verified-badge" title="Terverifikasi">
+            <svg viewBox="0 0 24 24"><defs><linearGradient id="vg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1d9bf0"/><stop offset="100%" stop-color="#1a8cd8"/></linearGradient></defs><path fill="url(#vg)" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91C2.88 9.33 2 10.57 2 12s.88 2.67 2.19 3.34c-.46 1.39-.2 2.9.81 3.91s2.52 1.26 3.91.8c.66 1.31 1.9 2.19 3.33 2.19s2.67-.88 3.34-2.19c1.39.46 2.9.2 3.91-.81s1.27-2.52.81-3.91C21.37 14.67 22.25 13.43 22.25 12z"/><path fill="white" d="M10.54 16.7L7 13.16l1.42-1.42 2.12 2.12 5.04-5.04 1.42 1.42z"/></svg>
+          </span>
+        </div>
+        <p class="hero-sub">Pelajar &nbsp;·&nbsp; Developer &nbsp;·&nbsp; Indonesia 🇮🇩</p>
+        <div class="bday-pill">
+          <i class="fas fa-cake-candles"></i>
+          <span id="bday-text">Memuat...</span>
+        </div>
+      </header>
+
+      <!-- ABOUT -->
+      <div class="port-card reveal">
+        <div class="port-card-title"><i class="fas fa-user"></i> About Me</div>
+        <p class="about-p">Halo! Nama saya <strong style="color:var(--text);font-weight:700">Bayu</strong>, pelajar dari Jawa Tengah, Indonesia yang punya passion di bidang software development. Suka membangun project dari nol dan selalu tertarik belajar teknologi baru setiap harinya.</p>
+        <p class="about-p">Saat ini fokus ngasah skill programming dan plan jadi full-stack developer profesional. Kalau mau kolaborasi atau ngobrol — langsung kontak aja!</p>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="port-card reveal" id="skill-card">
+        <div class="port-card-title"><i class="fas fa-code"></i> Skill &amp; Kemampuan</div>
+        <div id="skills-wrap"></div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="port-card reveal">
+        <div class="port-card-title"><i class="fas fa-address-book"></i> Kontak SbyuXd</div>
+        <div class="link-grid">
+          <a href="https://wa.me/628895307489" target="_blank" rel="noopener" class="lnk">
+            <span class="lnk-ico" style="background:rgba(37,211,102,0.12);color:#25d366"><i class="fab fa-whatsapp"></i></span>
+            <div><div class="lnk-name">WhatsApp</div><div class="lnk-handle">08895307489</div></div>
+          </a>
+          <a href="https://t.me/sbyuxdbxx" target="_blank" rel="noopener" class="lnk">
+            <span class="lnk-ico" style="background:rgba(0,136,204,0.12);color:#0088cc"><i class="fab fa-telegram"></i></span>
+            <div><div class="lnk-name">Telegram</div><div class="lnk-handle">@bayuror</div></div>
+          </a>
+          <a href="https://www.tiktok.com/@sbyuxd" target="_blank" rel="noopener" class="lnk">
+            <span class="lnk-ico" style="background:rgba(255,255,255,0.06);color:#fff"><i class="fab fa-tiktok"></i></span>
+            <div><div class="lnk-name">TikTok</div><div class="lnk-handle">@sbyuxd</div></div>
+          </a>
+          <a href="https://github.com/bayuasli" target="_blank" rel="noopener" class="lnk">
+            <span class="lnk-ico" style="background:rgba(255,255,255,0.06);color:#e2e8f0"><i class="fab fa-github"></i></span>
+            <div><div class="lnk-name">GitHub</div><div class="lnk-handle">bayuasli</div></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT -->
+      <div class="port-card reveal">
+        <div class="port-card-title"><i class="fas fa-rocket"></i> Project Unggulan</div>
+        <img src="https://raw.githubusercontent.com/bayuasli/dat1/main/uploads/013de2-1770460760445.jpg" alt="SbyuXd-bxx" class="proj-img" onerror="this.style.display='none'">
+        <div class="proj-name">SbyuXd-bxx — WhatsApp Bot</div>
+        <p class="proj-desc">Bot WhatsApp modular berbasis ESM modern dengan sistem plugin yang fleksibel. Dibangun dengan fokus pada performa tinggi, stabilitas, dan kontrol penuh di level sistem. Kode rapi dan konsisten — fitur fake quoted, custom reply, backup GitHub terintegrasi penuh.</p>
+        <div class="tags">
+          <span class="tag">ESM Modern</span>
+          <span class="tag">SQLite3</span>
+          <span class="tag">Plugin System</span>
+          <span class="tag">Clean Code</span>
+          <span class="tag">High Performance</span>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="reveal">
+        <div class="ft-links">
+          <a href="https://wa.me/628895307489" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://t.me/sbyuxdbxx" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a>
+          <a href="https://www.tiktok.com/@sbyuxd" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+          <a href="https://github.com/bayuasli" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+        </div>
+        <p class="ft-copy">© 2025 SbyuXd. All rights reserved.</p>
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/portfolio.js"></script>
+</body>
+</html>
